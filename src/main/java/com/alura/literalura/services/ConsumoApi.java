@@ -11,7 +11,7 @@ public class ConsumoApi {
     public String obterDados() {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://gutendex.com/books/"))
+                .uri(URI.create("https://gutendex.com/books/1/"))
                 .build();
 
         HttpResponse<String> response;
