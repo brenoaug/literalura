@@ -6,6 +6,7 @@ import com.alura.literalura.dto.DadosResposta;
 import com.alura.literalura.services.ConsumoApi;
 import com.alura.literalura.services.ConverteDados;
 
+import java.util.Comparator;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
@@ -48,7 +49,7 @@ public class Principal {
                 case 1 -> buscarLivroPorNome();
                 case 2 -> listarTodosLivros();
                 case 3 -> listarAutores();
-                case 4 -> System.out.println("Funcionalidade de Listar Autores Vivos em Determinado Ano em desenvolvimento.");
+                case 4 -> listarAutoresVivosEmAno();
                 default -> System.out.println("Opção inválida. Tente novamente.");
             }
             System.out.println("""
@@ -103,6 +104,26 @@ public class Principal {
 
         String resultadoLista = converteDados.obterDados(json, DadosResposta.class).livro().stream()
                 .flatMap(l -> l.autor().stream())
+                .map(DadosAutor::toString).collect(Collectors.joining(",\n\n "));
+
+        System.out.println(resultadoLista);
+    }
+
+    public void listarAutoresVivosEmAno() {
+        System.out.println("Digite o ano inicial:");
+        int anoInicial = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Digite o ano final:");
+        int anoFinal = scanner.nextInt();
+        scanner.nextLine();
+
+        String urlAutoresVivos = "?author_year_start=" + anoInicial + "&author_year_end=" + anoFinal;
+
+        var json = consumoApi.obterDados(urlAutoresVivos);
+
+        String resultadoLista = converteDados.obterDados(json, DadosResposta.class).livro().stream()
+                .flatMap(l -> l.autor().stream()).distinct()
+                .sorted(Comparator.comparing(DadosAutor::nome))
                 .map(DadosAutor::toString).collect(Collectors.joining(",\n\n "));
 
         System.out.println(resultadoLista);
