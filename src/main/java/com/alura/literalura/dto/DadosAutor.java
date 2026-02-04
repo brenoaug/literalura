@@ -12,8 +12,7 @@ public record DadosAutor(@JsonAlias ({"name", "nome"}) String nome,
     @Override
     public @NotNull String toString() {
         return "Autor='" + nome + '\'' +
-                ", Ano de Nascimento=" + anoNascimento +
-                ", Ano de Falecimento=" + anoFalecimento +
-                '}';
+                ",\n Ano de Nascimento=" + anoNascimento +
+                ",\n Ano de Falecimento=" + anoFalecimento;
     }
 }

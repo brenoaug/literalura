@@ -1,10 +1,13 @@
 package com.alura.literalura;
 
+import com.alura.literalura.dto.DadosAutor;
+import com.alura.literalura.dto.DadosLivro;
 import com.alura.literalura.dto.DadosResposta;
 import com.alura.literalura.services.ConsumoApi;
 import com.alura.literalura.services.ConverteDados;
 
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Principal {
 
@@ -28,7 +31,9 @@ public class Principal {
                 Menu de Opções:
                 1. Buscar Livro por Nome
                 2. Listar Todos os Livros
-                3. Sair
+                3. Lista de Autores
+                4. Listar Autores Vivos em Determinado Ano
+                9. Sair
                 """);
 
 
@@ -36,17 +41,21 @@ public class Principal {
         scanner.nextLine();
 
 
-        while (opcao != 3) {
+        while (opcao != 9) {
             switch (opcao) {
                 case 1 -> buscarLivroPorNome();
                 case 2 -> listarTodosLivros();
+                case 3 -> listarAutores();
+                case 4 -> System.out.println("Funcionalidade de Listar Autores Vivos em Determinado Ano em desenvolvimento.");
                 default -> System.out.println("Opção inválida. Tente novamente.");
             }
             System.out.println("""
-                    Menu de Opções:
+                        Menu de Opções:
                     1. Buscar Livro por Nome
                     2. Listar Todos os Livros
-                    3. Sair
+                    3. Lista de Autores
+                    4. Listar Autores Vivos em Determinado Ano
+                    9. Sair
                     """);
             opcao = scanner.nextInt();
             scanner.nextLine();
@@ -76,7 +85,22 @@ public class Principal {
 
         var json = consumoApi.obterDados(urlTodosLivros);
 
-        String resultadoLista = converteDados.obterDados(json, DadosResposta.class).toString();
+        String resultadoLista = converteDados.obterDados(json, DadosResposta.class).livro().stream()
+                .map(DadosLivro::toString).collect(Collectors.joining("\n\n"));
+
+        System.out.println(resultadoLista);
+    }
+
+    public void listarAutores() {
+        System.out.println("Listando todos os autores disponíveis...");
+
+        String urlTodosAutores = "";
+
+        var json = consumoApi.obterDados(urlTodosAutores);
+
+        String resultadoLista = converteDados.obterDados(json, DadosResposta.class).livro().stream()
+                .flatMap(l -> l.autor().stream())
+                .map(DadosAutor::toString).collect(Collectors.joining(",\n\n "));
 
         System.out.println(resultadoLista);
     }
