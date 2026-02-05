@@ -36,7 +36,7 @@ public class MenuPrincipal {
                 2. Listar Todos os Livros
                 3. Lista de Autores
                 4. Listar Autores Vivos em Determinado Ano
-                5. Popular Tabela de Autores
+                5. Popular Tabelas
                 9. Sair
                 """);
 
