@@ -16,8 +16,9 @@ public class Principal {
     ConsumoApi consumoApi = new ConsumoApi();
     ConverteDados converteDados = new ConverteDados();
 
-    public Principal() {
-    }
+
+
+
 
     public void iniciar() {
 
@@ -66,6 +67,9 @@ public class Principal {
     }
 
     public void buscarLivroPorNome() {
+
+
+
         System.out.print("Digite o nome do livro que deseja buscar: ");
 
         String nomeLivro = scanner.nextLine();
@@ -80,6 +84,8 @@ public class Principal {
                 .map(DadosLivro::toString).collect(Collectors.joining("\n\n"));
 
         System.out.println(resultadoPesquisa);
+
+
     }
 
     public void listarTodosLivros() {
