@@ -20,4 +20,14 @@ public class Autor {
     private int anoNascimento;
     @Column(name = "ano_falecimento")
     private int anoFalecimento;
+
+    public Autor(String nome, int anoNascimento, int anoFalecimento) {
+        this.nome = nome;
+        this.anoNascimento = anoNascimento;
+        this.anoFalecimento = anoFalecimento;
+    }
+
+    public Autor() {
+
+    }
 }
