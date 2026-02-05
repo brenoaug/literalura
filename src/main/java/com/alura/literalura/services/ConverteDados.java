@@ -4,7 +4,9 @@ package com.alura.literalura.services;
 import com.alura.literalura.services.interfaces.IConverteDados;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ConverteDados implements IConverteDados {
     private final ObjectMapper mapper = new ObjectMapper();
 
