@@ -13,7 +13,7 @@ public class ConverteDados implements IConverteDados {
     @Override
     public <T> T obterDados(String json, Class<T> classe) {
 
-        if(json == null || json.isEmpty()){
+        if (json == null || json.isEmpty()) {
             throw new IllegalArgumentException("O JSON fornecido é nulo ou vazio.");
         }
 
