@@ -43,36 +43,6 @@ public class MenuAutores {
 
         System.out.println(listaParaImpressao);
     }
-//
-//    public void popularTabelaAutores() {
-//        System.out.println("Você que começar de qual pagina\n");
-//        int paginaInicial = scanner.nextInt();
-//        scanner.nextLine();
-//
-//        System.out.println("Você que terminar em qual pagina\n");
-//        int paginaFinal = scanner.nextInt();
-//        scanner.nextLine();
-//
-//        System.out.println("Populando tabela de autores...\n");
-//
-//        for(int i = paginaInicial; i <= paginaFinal; i++) {
-//            var json = consumoApi.obterDados("?page=" + i);
-//
-//            List<DadosAutor> dadosAutores = converteDados.obterDados(json, DadosResposta.class).livro().stream()
-//                    .flatMap(l -> l.autor().stream())
-//                    .distinct().sorted(Comparator.comparing(DadosAutor::nome)).toList();
-//
-//            dadosAutores.forEach(dadosAutor -> {
-//                if(!autorRepository.existsByNome(dadosAutor.nome())) {
-//                    autorRepository.save(new Autor(
-//                            dadosAutor.nome(),
-//                            Objects.requireNonNullElse(dadosAutor.anoNascimento(), 0),
-//                            Objects.requireNonNullElse(dadosAutor.anoFalecimento(), 0))
-//                    );
-//                }});
-//
-//            System.out.println(dadosAutores.stream().map(DadosAutor::toString).collect(joining(",\n\n ")));
-//        }
 }
 
 
