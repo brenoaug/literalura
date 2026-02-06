@@ -72,8 +72,24 @@ public class LivroService {
                     livroRepository.save(livro);
                 }
             });
-
         }
+    }
+
+    public double quantidadeLivrosIdiomaBancoDados(String idioma) {
+        List<Livro> livros = livroRepository.findAll();
+
+        return livros.stream().filter(l -> l.getIdioma().equals(idioma)).count();
+    }
+
+    public List<Livro> listaLivrosPorIdioma(String idioma) {
+        List<Livro> livros = livroRepository.findAll();
+
+        return livros.stream()
+                .filter(l -> l.getIdioma().equals(idioma))
+                .toList().stream()
+                .sorted(Comparator.comparing(Livro::getTitulo))
+                .toList();
+
     }
 }
 
