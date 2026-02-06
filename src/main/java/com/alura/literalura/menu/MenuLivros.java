@@ -47,4 +47,72 @@ public class MenuLivros {
         System.out.println("Tabela populada com sucesso!\n");
     }
 
+    public void imprimeLivrosPorIdioma() {
+        System.out.println("""
+                Escolha entre os seguintes idiomas:
+                
+                1. Inglês
+                2. Frances
+                3. Espanhol
+                4. Português
+                0. Voltar ao menu principal
+                
+                """);
+
+        var opcao = scanner.nextInt();
+        scanner.nextLine();
+
+        String idiomaCompleto = "";
+        String idioma = "";
+
+        while (opcao != 0) {
+
+            switch (opcao) {
+                case 1:
+                    idioma = "en";
+                    idiomaCompleto = "Inglês";
+                    break;
+                case 2:
+                    idioma = "fr";
+                    idiomaCompleto = "Francês";
+                    break;
+                case 3:
+                    idioma = "es";
+                    idiomaCompleto = "Espanhol";
+                    break;
+                case 4:
+                    idioma = "pt";
+                    idiomaCompleto = "Português";
+                    break;
+                default:
+                    System.out.println("Idioma inválido. Tente novamente.");
+            }
+
+            var quantidade = livroService.quantidadeLivrosIdiomaBancoDados(idioma);
+            var listaLivros = livroService.listaLivrosPorIdioma(idioma);
+
+            System.out.printf("""
+                    A quantidade de livros no idioma %s é: %.0f
+                    %n""", idiomaCompleto, quantidade);
+
+            System.out.println("Listando livros do idioma: \n\n" + listaLivros.toString().replace("[", "").replace("]", "").replace(", ", ""));
+
+            System.out.println("""
+                    Escolha entre os seguintes idioma:
+                    
+                    1. Inglês
+                    2. Frances
+                    3. Espanhol
+                    4. Português
+                    0. Voltar ao menu principal
+                    
+                    """);
+
+            opcao = scanner.nextInt();
+            scanner.nextLine();
+        }
+
+    }
+
 }
+

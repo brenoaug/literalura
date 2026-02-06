@@ -32,4 +32,19 @@ public class Livro {
 
     public Livro() {
     }
+
+    public String getIdioma() {
+        return idioma;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    @Override
+    public String toString() {
+        return """
+                Título: %s;
+                """.formatted(titulo);
+    }
 }
