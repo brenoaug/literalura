@@ -17,11 +17,11 @@ public class Autor {
     @Column(name = "nome")
     private String nome;
     @Column(name = "ano_nascimento")
-    private int anoNascimento;
+    private Integer anoNascimento;
     @Column(name = "ano_falecimento")
-    private int anoFalecimento;
+    private Integer anoFalecimento;
 
-    public Autor(String nome, int anoNascimento, int anoFalecimento) {
+    public Autor(String nome, Integer anoNascimento, Integer anoFalecimento) {
         this.nome = nome;
         this.anoNascimento = anoNascimento;
         this.anoFalecimento = anoFalecimento;
@@ -29,6 +29,18 @@ public class Autor {
 
     public Autor() {
 
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public Integer getAnoNascimento() {
+        return anoNascimento;
+    }
+
+    public Integer getAnoFalecimento() {
+        return anoFalecimento;
     }
 
 }

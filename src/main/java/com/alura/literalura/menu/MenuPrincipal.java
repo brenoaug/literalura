@@ -38,6 +38,7 @@ public class MenuPrincipal {
                 4. Listar Autores Vivos em Determinado Ano
                 5. Popular Tabelas
                 6. Quantidade de Livros por Idioma
+                7. Listar Autores Vivos em Determinado Ano do Banco de Dados
                 9. Sair
                 """);
 
@@ -54,6 +55,7 @@ public class MenuPrincipal {
                 case 4 -> menuAutores.imprimeAutoresVivosEmAno();
                 case 5 -> menuLivros.popularTabelas();
                 case 6 -> menuLivros.imprimeLivrosPorIdioma();
+                case 7 -> menuAutores.imprimeAutoresVivosEmAnoNoBanco();
                 default -> System.out.println("Opção inválida. Tente novamente.");
             }
             System.out.println("""
@@ -64,6 +66,7 @@ public class MenuPrincipal {
                     4. Listar Autores Vivos em Determinado Ano
                     5. Popular Tabelas
                     6. Quantidade de Livros por Idioma
+                    7. Listar Autores Vivos em Determinado Ano do Banco de Dados
                     9. Sair
                     """);
             opcao = scanner.nextInt();

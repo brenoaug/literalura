@@ -38,14 +38,18 @@ public class AutorService {
                 .sorted(Comparator.comparing(DadosAutor::nome)).toList();
     }
 
+    public List<Autor> buscaAutoresPorAnoNascimentoFalecimentoNoBanco(int anoInicial, int anoFinal) {
+        return autorRepository.findAutorByVivo(anoInicial, anoFinal);
+    }
+
     public Autor salvarAutor(DadosAutor dadosAutor) {
         String nomeAutor = Objects.requireNonNullElse(dadosAutor.nome(), "Autor Desconhecido");
 
         return autorRepository.findByNome(nomeAutor).orElseGet(() -> {
             Autor autor = new Autor(
                     nomeAutor,
-                    Objects.requireNonNullElse(dadosAutor.anoNascimento(),0),
-                    Objects.requireNonNullElse(dadosAutor.anoFalecimento(), 0)
+                    dadosAutor.anoNascimento(),
+                    dadosAutor.anoFalecimento()
             );
             autorRepository.save(autor);
             return autor;

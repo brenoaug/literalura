@@ -38,10 +38,39 @@ public class MenuAutores {
         var listaParaImpressao = autorService.buscaAutoresPorAnoNascimentoFalecimento(anoInicial, anoFinal)
                 .stream()
                 .map(DadosAutor::toString)
-                .collect(Collectors.joining(",\n\n "));
+                .collect(Collectors.joining(",\n "));
 
 
         System.out.println(listaParaImpressao);
+    }
+
+    public void imprimeAutoresVivosEmAnoNoBanco() {
+        var anoInicial = 0;
+        var anoFinal = 0;
+
+        while (anoFinal <= anoInicial) {
+            System.out.println("Digite o ano inicial:");
+            anoInicial = scanner.nextInt();
+            scanner.nextLine();
+
+            System.out.println("Digite o ano final:");
+            anoFinal = scanner.nextInt();
+            scanner.nextLine();
+
+            System.out.println("O ano final deve ser maior que o ano inicial. Tente novamente.\n");
+        }
+
+        System.out.println("Listando autores vivos entre os anos " + anoInicial + " e " + anoFinal + "...\n");
+
+        var listaParaImpressao = autorService.buscaAutoresPorAnoNascimentoFalecimentoNoBanco(anoInicial, anoFinal)
+                .stream()
+                .map(a -> a.getNome() + " (Nascimento: " + a.getAnoNascimento() + ", Falecimento: " + a.getAnoFalecimento() + ")")
+                .collect(Collectors.joining(",\n"));
+
+
+
+        System.out.println(!listaParaImpressao.isBlank() ?
+                listaParaImpressao : "Nenhum autor encontrado para o período informado.\n");
     }
 }
 
